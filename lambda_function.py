@@ -18,9 +18,22 @@ def lambda_handler(event, context):
             print(f"Stopping process. S3 object {file_key} is not in '.txt' format.")
             return {'statusCode': 200, 'body': 'Skipped non-txt source file.'}
         
-        #Print successful parse message
-        print("Validation successful!, This is a '.txt' file.")
-        return {'statusCode': 200, 'body': 'File validation successful.'}
+        #Print successful parse message for testing 
+        #print("Validation successful!, This is a '.txt' file.")
+        #return {'statusCode': 200, 'body': 'File validation successful.'}
+    
+        #2.) Fetch the text file contents down from the S3 storage ;ayer
+        s3_object = s3_client.get_object(Bucket = bucket_name, Key= file_key)
+        raw_text = s3_object['Body'].read().decode('utf-8')
+        if not raw_text.strip():
+            print("Target text payload is vacant. Terminating compute pass")
+            return{'statusCode': 400, 'body': 'Source payload empty'}
+        
+        print(f"Successfully retrieved raw text: {raw_text}") #Temp print for testing.
+       
+
     except Exception as error:
         print(f"Fatal operational exception occured: {str(error)}")
         raise error
+    
+
