@@ -21,7 +21,7 @@ def lambda_handler(event, context):
         #print("Validation successful!, This is a '.txt' file.")
         #return {'statusCode': 200, 'body': 'File validation successful.'}
     
-        #2.) Fetch the text file contents down from the S3 storage ;ayer
+        #2.) Fetch the text file contents down from the S3 storage layer
         s3_object = s3_client.get_object(Bucket = bucket_name, Key= file_key)
         raw_text = s3_object['Body'].read().decode('utf-8')
         if not raw_text.strip():
@@ -37,7 +37,25 @@ def lambda_handler(event, context):
             VoiceId = 'Joanna'
             )
        #Temp verification print to make sure polly responds 
-        print(f"Polly payload initialized successfully. Response keys: {list(polly_response.keys())}")
+       #print(f"Polly payload initialized successfully. Response keys: {list(polly_response.keys())}")
+
+       #4.) Generate the target output key and stream the binary audio payload back to s3
+       #Changes the '.txt' to '.mp3'
+        audio_file_key = file_key.rsplit('.',1)[0] + '.mp3'
+        print(f"Targeting output audio destination path: {audio_file_key}")
+
+       # Write the stream back to S3
+        s3_client.put_object(
+           Bucket = bucket_name,
+           Key = audio_file_key,
+           Body = polly_response ['AudioStream'].read(),
+           ContentType='audio/mpeg'
+        )
+        print(f"Pipeline processing complete. Audio asset archived: {audio_file_key}")
+        return{
+            'statusCode':200,
+            'body': f'succesfully synthesized speech asset: {audio_file_key}'
+        }
 
     except Exception as error:
         print(f"Fatal operational exception occured: {str(error)}")
