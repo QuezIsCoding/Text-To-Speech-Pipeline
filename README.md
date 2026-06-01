@@ -15,7 +15,7 @@ This project is designed to be 100% serverless and cost effective while maintain
 ### Phase 1: Manual Ingestion Architecture
 * [X] Step 1: Initialize Project Directory & Git Tracking (Local)
 * [X] Step 2: Provision S3 Storage Bucket (AWS Console) (You will need create your own s3 bucket )
-* [ ] Step 3: Configure Security Boundaries & IAM Execution Role (AWS Console)
+* [X] Step 3: Configure Security Boundaries & IAM Execution Role (AWS Console)
 * [ ] Step 4: Deploy Serverless Compute Core & Python Code (AWS Lambda)
 * [ ] Step 5: Wire S3 Object-Creation Trigger (AWS Automation)
 * [ ] Step 6: Execute Live End-to-End Pipeline Verification Test
