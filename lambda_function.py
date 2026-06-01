@@ -10,7 +10,6 @@ def lambda_handler(event, context):
         #1.) Parse out the operational s3 event metadata from the incoming trigger payload 
         bucket_name = event['Records'][0]['s3']['bucket']['name']
         file_key = event['Records'][0]['s3']['object']['key']
-
         print(f"Inbound payload detected :{file_key} within S3 bucket :{bucket_name}")
 
         #Security guard Clause: stop execution if a wrong file format hits the s3 bucket
@@ -28,9 +27,17 @@ def lambda_handler(event, context):
         if not raw_text.strip():
             print("Target text payload is vacant. Terminating compute pass")
             return{'statusCode': 400, 'body': 'Source payload empty'}
-        
         print(f"Successfully retrieved raw text: {raw_text}") #Temp print for testing.
-       
+
+        #3.) Call Amazon Polly Neural txt-to-speech engine over HTTPS (Port 443)
+        print("Forwarding raw payload to AWS Polly")
+        polly_response = polly_client.synthesize_speech(
+            Text = raw_text,
+            OutputFormat ='mp3',
+            VoiceId = 'Joanna'
+            )
+       #Temp verification print to make sure polly responds 
+        print(f"Polly payload initialized successfully. Response keys: {list(polly_response.keys())}")
 
     except Exception as error:
         print(f"Fatal operational exception occured: {str(error)}")
