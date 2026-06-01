@@ -33,12 +33,12 @@ This project is designed to be 100% serverless and cost effective while maintain
 ## 🛠️ Step-by-Step Build Log
 
 ### Step 1: Initialize Workspace (Local Windows PC)
-* **Status:** PENDING
+* **Status:** COMPLETE
 * **Notes:** ### Step 2: Provision Cloud Storage (Amazon S3)
-* **Status:** PENDING
+* **Status:** COMPLETE
 * **Bucket Name:** `[Your Bucket Name Here]`
 * **Notes:** ### Step 3: Configure IAM Security Boundary
-* **Status:** PENDING
+* **Status:** COMPLETE
 * **Role Name:** `[Your Role Name Here]`
 * **Attached Policies:** `AmazonPollyFullAccess`, `AWSLambdaBasicExecutionRole`
 * **Notes:** ### Step 4: Deploy Serverless Function Logic (AWS Lambda)
