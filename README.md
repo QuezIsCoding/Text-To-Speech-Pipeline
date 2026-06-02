@@ -16,7 +16,7 @@ This project is designed to be 100% serverless and cost effective while maintain
 * [X] Step 1: Initialize Project Directory & Git Tracking (Local)
 * [X] Step 2: Provision S3 Storage Bucket (AWS Console) (You will need create your own s3 bucket )
 * [X] Step 3: Configure Security Boundaries & IAM Execution Role (AWS Console)
-* [X] Step 4: Deploy Serverless Compute Core & Python Code (AWS Lambda)
+* [X] Step 4: Deploy Serverless Compute Core & Python Code (AWS Lambda). Do not forget too add the S3 trigger
 * [X] Step 5: Wire S3 Object-Creation Trigger (AWS Automation)
 * [X] Step 6: Execute Live End-to-End Pipeline Verification Test
 * [X] Step 7: Finalize Phase 1 Build Log & Sync to GitHub
@@ -43,8 +43,7 @@ This project is designed to be 100% serverless and cost effective while maintain
 * **Status:** COMPLETE
 * **Role Name:** `[Your Role Name Here]`
 * **Attached Policies:** `AmazonPollyFullAccess`, `AWSLambdaBasicExecutionRole` , `AmazonS3FullAccess`
-* **Notes:** I started with `AmazonS3ReadOnlyAccess` for the lambda S3 access, but as I added on to my code I got permission errors so I changed   
-            it
+* **Notes:** I started with `AmazonS3ReadOnlyAccess` for the lambda S3 access, but as I added on to my code I got permission errors so I changed it
  ### Step 4: Deploy Serverless Function Logic (AWS Lambda)
 * **Status:** Complete
 * **Function Name:** `ConvertTextToAudio`
