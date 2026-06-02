@@ -22,8 +22,8 @@ This project is designed to be 100% serverless and cost effective while maintain
 * [X] Step 7: Finalize Phase 1 Build Log & Sync to GitHub
 
 ### Phase 2: Infrastructure as Code (IaC) Migration 
-* [ ] Step 8: Destroy Phase 1 Console Resources to Prevent AWS Drift
-* [ ] Step 9: Configure Terraform AWS Provider & State File Parameters
+* [X] Step 8: Destroy Phase 1 Console Resources to Prevent AWS Drift
+* [X] Step 9: Configure Terraform AWS Provider & State File Parameters
 * [ ] Step 10: Translate IAM Roles & Managed Policies into `iam.tf`
 * [ ] Step 11: Translate S3 Configuration into `s3.tf`
 * [ ] Step 12: Package Python Source Code & Define `lambda.tf` Resource Mapping
